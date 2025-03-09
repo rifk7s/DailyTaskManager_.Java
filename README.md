@@ -8,8 +8,8 @@ Here are some challenge:
 
 1. **Out Of Memory**
    - take a look at .vscode/settings.json, i add jvm arguments for more memory in the jvm since i got the OOM
-   - ![IMG](https://github.com/rifk7s/MyFirstProgram_.Java/blob/main/images/OOM_ERROR.jpg?raw=true)
-   - ![IMG](https://github.com/rifk7s/MyFirstProgram_.Java/blob/main/images/OOM.png?raw=true)
+   - ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM_ERROR.jpg?raw=true)
+   - ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM.jpg?raw=true)
 
 2. **ChatGPT Support**
    - Im sorry but 50% of the code are ChatGPT (its hard i cant do it alone)
