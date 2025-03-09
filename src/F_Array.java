@@ -62,4 +62,37 @@ public class F_Array {
         }
         return null;
     }
+
+    public void addTask(String newTask) {
+        String[] newTasks = new String[tasks.length + 1];
+        boolean[] newCompleted = new boolean[tasks.length + 1];
+        
+        System.arraycopy(tasks, 0, newTasks, 0, tasks.length);
+        System.arraycopy(completed, 0, newCompleted, 0, completed.length);
+        
+        newTasks[tasks.length] = newTask;
+        tasks = newTasks;
+        completed = newCompleted;
+        System.out.println("Task added successfully!");
+    }
+
+    public void deleteTask(int index) {
+        if (index < 0 || index >= tasks.length) {
+            System.out.println("Invalid index!");
+            return;
+        }
+
+        String[] newTasks = new String[tasks.length - 1];
+        boolean[] newCompleted = new boolean[tasks.length - 1];
+        
+        System.arraycopy(tasks, 0, newTasks, 0, index);
+        System.arraycopy(tasks, index + 1, newTasks, index, tasks.length - index - 1);
+        
+        System.arraycopy(completed, 0, newCompleted, 0, index);
+        System.arraycopy(completed, index + 1, newCompleted, index, completed.length - index - 1);
+        
+        tasks = newTasks;
+        completed = newCompleted;
+        System.out.println("Task deleted successfully!");
+    }
 }
