@@ -1,20 +1,25 @@
 # Daily Task Manager
+ A Java-based command-line task management application that helps users organize and track their daily tasks.
 
-A Java-based command-line task management application that helps users organize and track their daily tasks.
+## Environment Setup
+#### IDE, Languages, and Deployment Tools
 
+- [![Git Bash](https://img.shields.io/badge/Gitbash%20--f14e32?logo=git)](https://git-scm.com/downloads)
+  [![VSCode](https://img.shields.io/badge/VSCode-0086d1?style=flat&logo=internetcomputer&logoColor=white)](https://code.visualstudio.com/download) 
+  [![Oracle Java 23](https://img.shields.io/badge/Oracle%20Java%2023-ED8B00?style=flat-square&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
 ## Challenge 
+> [!NOTE]  
+>  Here are some challenges that I encountered during the project:
 
-Here are some challenge:
-
-1. **Out Of Memory**
+ **1. Out Of Memory**
    - take a look at .vscode/settings.json, i add jvm arguments for more memory in the jvm since i got the OOM
    - ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM_ERROR.jpg?raw=true)
    - ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM.jpg?raw=true)
 
-2. **ChatGPT Support**
-   - Im sorry but 50% of the code are ChatGPT (its hard i cant do it alone)
-## Features
+ **2. Support and Helps**
+   - Im sorry for 50% of the code are done in ChatGPT (i dont fully understand the linkedlist), I also asked a few friends for references or code example, thanks for them for showing and help me do finish the code.
 
+## Features
 - View predefined tasks with completion status
 - Update existing tasks
 - Add new tasks dynamically
@@ -25,7 +30,6 @@ Here are some challenge:
 - Clean console-based UI
 
 ## Data Structures Used
-
 1. **Array-based Task Storage**
    - Dynamic resizing for task addition/deletion
    - Parallel boolean array for completion tracking
@@ -73,22 +77,7 @@ Here are some challenge:
 
 ## Contributing
 
-Feel free to implement any of the challenge extensions or suggest new features!
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Feel free to implement any of the challenge extensions or suggest new features, dont forget to star the repo!
 
 # Code Citations (References)
 
