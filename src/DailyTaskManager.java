@@ -1,32 +1,87 @@
 import java.util.Scanner;
+import java.util.LinkedList;
 
+/**
+ * DailyTaskManager - A task management system with dual implementation (Array/LinkedList)
+ * Features:
+ * - Task creation, updating, and deletion
+ * - Task completion tracking
+ * - Undo functionality for completed tasks
+ * - Flexible data structure selection
+ */
 public class DailyTaskManager {
-    private F_Array taskArray;
-    private F_Stack taskStack;
-    private Scanner scanner;
+    // ===== Class Fields =====
+    private F_Array taskArray;          // Array-based implementation
+    private F_Stack taskStack;          // Stack for undo operations
+    private Scanner scanner;            // User input handler
+    private LinkedList<String> taskList;        // LinkedList-based implementation
+    private LinkedList<Boolean> completedList;  // Completion status for LinkedList impl
+    private boolean isArrayBased;       // Flag for current implementation type
 
+    // ===== Constructor and Initialization =====
     public DailyTaskManager() {
-        taskArray = new F_Array();
-        taskStack = new F_Stack();
         scanner = new Scanner(System.in);
+        selectDataStructure();
     }
 
+    /**
+     * Handles the selection of data structure implementation
+     * Allows user to choose between Array and LinkedList
+     */
+    private void selectDataStructure() {
+        System.out.println("==============================");
+        System.out.println("Which menu do you want to see?");
+        System.out.println("(0 to exit)");
+        System.out.println("1. Array");
+        System.out.println("2. Linked List");
+        System.out.println("==============================");
+        System.out.print("Please enter : ");
+        
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        
+        if (choice == 0) {
+            System.exit(0);
+        }
+        
+        isArrayBased = (choice == 1);
+        if (isArrayBased) {
+            taskArray = new F_Array();
+            taskStack = new F_Stack();
+        } else {
+            taskList = new LinkedList<>();
+            completedList = new LinkedList<>();
+            taskStack = new F_Stack();
+        }
+        cls();
+    }
+
+    // ===== Menu and Control Methods =====
+    /**
+     * Displays the main menu interface
+     * Shows all available operations and current data structure
+     */
     public void displayMenu() {
         System.out.println("******************************");
         System.out.println("Welcome to Daily Task Manager!");
         System.out.println("******************************");
         System.out.println("\n=== Menu Options ===");
-        System.out.println("1. View predefined tasks");
-        System.out.println("2. Update predefined task");
+        System.out.println("1. View tasks");
+        System.out.println("2. Update task");
         System.out.println("3. Add new task");
         System.out.println("4. Delete task");
         System.out.println("5. Mark task as completed");
         System.out.println("6. Undo task completion");
         System.out.println("7. Check if all tasks are completed");
-        System.out.println("8. Exit");
+        System.out.println("8. Change data structure");
+        System.out.println("9. Exit");
         System.out.print("\nWhat would you like to do?: ");
     }
 
+    /**
+     * Main program loop
+     * Handles user input and routes to appropriate operations
+     */
     public void run() {
         boolean running = true;
         while (running) {
@@ -38,7 +93,7 @@ public class DailyTaskManager {
 
             switch (choice) {
                 case 1:
-                    taskArray.displayTasks();
+                    displayTasks();
                     pauseExecution();
                     break;
                 case 2:
@@ -61,11 +116,14 @@ public class DailyTaskManager {
                         System.out.println("Congratulations! All tasks are completed!");
                     } else {
                         System.out.println("You still have incomplete tasks.");
-                        taskArray.displayTasks();
+                        displayTasks();
                     }
                     pauseExecution();
                     break;
                 case 8:
+                    selectDataStructure();
+                    break;
+                case 9:
                     if (allTaskCompleted()) {
                         System.out.println("Thank you for using Daily Task Manager!");
                         System.out.println("Exiting Program . . .");
@@ -86,14 +144,43 @@ public class DailyTaskManager {
         scanner.close();
     }
 
+    // ===== Task Operation Methods =====
+    /**
+     * Displays all tasks with their completion status
+     * Format differs based on implementation (Array/LinkedList)
+     */
+    private void displayTasks() {
+        if (isArrayBased) {
+            taskArray.displayTasks();
+        } else {
+            System.out.println("\nPredefined Tasks:");
+            for (int i = 0; i < taskList.size(); i++) {
+                String status = completedList.get(i) ? "[Done]" : "[ ]";
+                System.out.println((i + 1) + ". " + status + " " + taskList.get(i));
+            }
+        }
+    }
+
+    /**
+     * Handles adding new tasks to the system
+     * Supports continuous addition with confirmation
+     */
     private void addNewTask() {
         boolean continueAdding = true;
         while (continueAdding) {
-            taskArray.displayTasks();
+            displayTasks();
             System.out.print("\nEnter new task: ");
             String newTask = scanner.nextLine();
-            taskArray.addTask(newTask);
-            taskArray.displayTasks();
+            
+            if (isArrayBased) {
+                taskArray.addTask(newTask);
+            } else {
+                taskList.add(newTask);
+                completedList.add(false);
+                System.out.println("Task added successfully!");
+            }
+            
+            displayTasks();
             
             try {
                 Thread.sleep(900);
@@ -112,16 +199,32 @@ public class DailyTaskManager {
         }
     }
 
+    /**
+     * Handles deletion of existing tasks
+     * Validates index and updates data structure accordingly
+     */
     private void deleteExistingTask() {
         boolean continueDeleting = true;
         while (continueDeleting) {
-            taskArray.displayTasks();
-            System.out.print("Enter task index to delete (1-" + taskArray.getTaskCount() + "): ");
+            displayTasks();
+            int maxTasks = isArrayBased ? taskArray.getTaskCount() : taskList.size();
+            System.out.print("Enter task index to delete (1-" + maxTasks + "): ");
             int index = scanner.nextInt() - 1;
             scanner.nextLine();
             
-            taskArray.deleteTask(index);
-            taskArray.displayTasks();
+            if (isArrayBased) {
+                taskArray.deleteTask(index);
+            } else {
+                if (index >= 0 && index < taskList.size()) {
+                    taskList.remove(index);
+                    completedList.remove(index);
+                    System.out.println("Task deleted successfully!");
+                } else {
+                    System.out.println("Invalid index!");
+                }
+            }
+            
+            displayTasks();
             
             try {
                 Thread.sleep(900);
@@ -140,17 +243,33 @@ public class DailyTaskManager {
         }
     }
 
+    /**
+     * Handles updating existing task descriptions
+     * Maintains completion status while updating content
+     */
     private void updatePredefinedTask() {
         boolean continueUpdating = true;
         while (continueUpdating) {
-            taskArray.displayTasks();
-            System.out.print("Enter task index to update (1-" + taskArray.getTaskCount() + "): ");
+            displayTasks();
+            int maxTasks = isArrayBased ? taskArray.getTaskCount() : taskList.size();
+            System.out.print("Enter task index to update (1-" + maxTasks + "): ");
             int index = scanner.nextInt() - 1;
             scanner.nextLine(); // Consume newline
             System.out.print("Enter new task: ");
             String newTask = scanner.nextLine();
-            taskArray.updateTask(index, newTask);
-            taskArray.displayTasks(); // Display updated tasks
+            
+            if (isArrayBased) {
+                taskArray.updateTask(index, newTask);
+            } else {
+                if (index >= 0 && index < taskList.size()) {
+                    taskList.set(index, newTask);
+                    System.out.println("Task updated successfully!");
+                } else {
+                    System.out.println("Invalid index!");
+                }
+            }
+            
+            displayTasks(); // Display updated tasks
             try {
                 Thread.sleep(900);
             } catch (InterruptedException e) {
@@ -168,6 +287,11 @@ public class DailyTaskManager {
         }
     }
 
+    // ===== UI Helper Methods =====
+    /**
+     * Displays operation-specific sub-menus
+     * @param action Current operation type (add/update/delete/complete)
+     */
     private void showSubMenu(String action) {
         System.out.println("\nWhat would you like to do next?");
         String actionText;
@@ -190,32 +314,62 @@ public class DailyTaskManager {
         System.out.print("Your choice: ");
     }
 
+    // ===== Task Status Management =====
+    /**
+     * Handles marking tasks as completed
+     * Updates completion status and adds to undo stack
+     */
     private void markTaskCompleted() {
         boolean continueMarking = true;
         while (continueMarking) {
-            taskArray.displayTasks();
-            System.out.print("Enter task index to mark as completed (1-" + taskArray.getTaskCount() + "): ");
+            displayTasks();
+            int maxTasks = isArrayBased ? taskArray.getTaskCount() : taskList.size();
+            System.out.print("Enter task index to mark as completed (1-" + maxTasks + "): ");
             int index = scanner.nextInt() - 1;
             scanner.nextLine(); // Consume newline
             
-            if (taskArray.isCompleted(index)) {
-                System.out.println("This task is already completed!");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    System.out.println("Error: " + e.getMessage());
-                }
-            } else {
-                String task = taskArray.getTask(index);
-                if (task != null) {
-                    taskArray.markAsCompleted(index);
-                    taskStack.push(task);
-                    System.out.println("Task \"" + task + "\" completed!");
-                    taskArray.displayTasks();
+            if (isArrayBased) {
+                if (taskArray.isCompleted(index)) {
+                    System.out.println("This task is already completed!");
                     try {
-                        Thread.sleep(1500);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         System.out.println("Error: " + e.getMessage());
+                    }
+                } else {
+                    String task = taskArray.getTask(index);
+                    if (task != null) {
+                        taskArray.markAsCompleted(index);
+                        taskStack.push(task);
+                        System.out.println("Task \"" + task + "\" completed!");
+                        displayTasks();
+                        try {
+                            Thread.sleep(1500);
+                        } catch (InterruptedException e) {
+                            System.out.println("Error: " + e.getMessage());
+                        }
+                    }
+                }
+            } else {
+                if (index >= 0 && index < taskList.size()) {
+                    if (completedList.get(index)) {
+                        System.out.println("This task is already completed!");
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            System.out.println("Error: " + e.getMessage());
+                        }
+                    } else {
+                        String task = taskList.get(index);
+                        completedList.set(index, true);
+                        taskStack.push(task);
+                        System.out.println("Task \"" + task + "\" completed!");
+                        displayTasks();
+                        try {
+                            Thread.sleep(1500);
+                        } catch (InterruptedException e) {
+                            System.out.println("Error: " + e.getMessage());
+                        }
                     }
                 }
             }
@@ -231,18 +385,30 @@ public class DailyTaskManager {
         }
     }
 
+    /**
+     * Handles undoing the most recent task completion
+     * Uses stack to track completion history
+     */
     private void undoTaskCompletion() {
         String task = taskStack.pop();
         if (task != null) {
-            // Find and unmark the task
-            for (int i = 0; i < taskArray.getTaskCount(); i++) {
-                if (task.equals(taskArray.getTask(i))) {
-                    taskArray.markAsNotCompleted(i);
-                    break;
+            if (isArrayBased) {
+                for (int i = 0; i < taskArray.getTaskCount(); i++) {
+                    if (task.equals(taskArray.getTask(i))) {
+                        taskArray.markAsNotCompleted(i);
+                        break;
+                    }
+                }
+            } else {
+                for (int i = 0; i < taskList.size(); i++) {
+                    if (task.equals(taskList.get(i))) {
+                        completedList.set(i, false);
+                        break;
+                    }
                 }
             }
             System.out.println("Undone task: " + task);
-            taskArray.displayTasks(); // Display updated tasks
+            displayTasks(); // Display updated tasks
             try {
                 Thread.sleep(1500); // Increased sleep time for better readability
             } catch (InterruptedException e) {
@@ -262,20 +428,41 @@ public class DailyTaskManager {
         }
     }
 
+    /**
+     * Checks completion status of all tasks
+     * @return true if all tasks are completed, false otherwise
+     */
     private boolean allTaskCompleted() {
-        for (int i = 0; i < taskArray.getTaskCount(); i++) {
-            if (!taskArray.isCompleted(i)) {
-                return false;
+        if (isArrayBased) {
+            for (int i = 0; i < taskArray.getTaskCount(); i++) {
+                if (!taskArray.isCompleted(i)) {
+                    return false;
+                }
+            }
+        } else {
+            for (Boolean completed : completedList) {
+                if (!completed) {
+                    return false;
+                }
             }
         }
         return true;
     }
 
+    // ===== Utility Methods =====
+    /**
+     * Clears the console screen
+     * Uses ANSI escape codes for clearing
+     */
     private static void cls() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
+    /**
+     * Handles program termination
+     * Displays exit message and performs cleanup
+     */
     private static void exitProgram() {
         try {
             Thread.sleep(900);
@@ -287,12 +474,20 @@ public class DailyTaskManager {
         System.exit(0);
     }
 
+    /**
+     * Pauses execution until user input
+     * Used for better UI flow control
+     */
     private void pauseExecution() {
         System.out.println("\nPress Enter to continue...");
         scanner.nextLine();
         cls();
     }
 
+    /**
+     * Program entry point
+     * Initializes manager and starts main loop
+     */
     public static void main(String[] args) {
         DailyTaskManager manager = new DailyTaskManager();
         manager.run();

@@ -1,7 +1,14 @@
+/**
+ * F_Array - Array implementation for task management
+ * Manages tasks and their completion status using parallel arrays
+ */
 public class F_Array {
-    private String[] tasks;
+    private String[] tasks;      // Store task descriptions
     private boolean[] completed; // Track completion status
 
+    /**
+     * Constructor - Initializes with default tasks
+     */
     public F_Array() {
         tasks = new String[]{ //default tasks
             "Contoh1",
@@ -13,6 +20,11 @@ public class F_Array {
         completed = new boolean[tasks.length]; // Initialize all tasks as not completed
     }
 
+    // ============ Task Display Methods ============
+    
+    /**
+     * Displays all tasks with their completion status
+     */
     public void displayTasks() {
         System.out.println("\nPredefined Tasks:");
         for (int i = 0; i < tasks.length; i++) {
@@ -21,21 +33,33 @@ public class F_Array {
         }
     }
 
-    // Add method to mark task as completed
+    // ============ Task Status Methods ============
+
+    /**
+     * Marks a task as completed
+     * @param index The index of the task to mark as completed
+     */
     public void markAsCompleted(int index) {
         if (index >= 0 && index < tasks.length) {
             completed[index] = true;
         }
     }
 
-    // Add method to mark task as not completed
+    /**
+     * Marks a task as not completed
+     * @param index The index of the task to mark as not completed
+     */
     public void markAsNotCompleted(int index) {
         if (index >= 0 && index < tasks.length) {
             completed[index] = false;
         }
     }
 
-    // Add method to check if task is completed
+    /**
+     * Checks if a task is completed
+     * @param index The index of the task to check
+     * @return true if the task is completed, false otherwise
+     */
     public boolean isCompleted(int index) {
         if (index >= 0 && index < tasks.length) {
             return completed[index];
@@ -43,6 +67,11 @@ public class F_Array {
         return false;
     }
 
+    /**
+     * Updates the description of a task
+     * @param index The index of the task to update
+     * @param newTask The new description of the task
+     */
     public void updateTask(int index, String newTask) {
         if (index >= 0 && index < tasks.length) {
             tasks[index] = newTask;
@@ -52,10 +81,19 @@ public class F_Array {
         }
     }
 
+    /**
+     * Gets the total number of tasks
+     * @return The number of tasks
+     */
     public int getTaskCount() {
         return tasks.length;
     }
 
+    /**
+     * Gets the description of a task
+     * @param index The index of the task to get
+     * @return The description of the task, or null if the index is invalid
+     */
     public String getTask(int index) {
         if (index >= 0 && index < tasks.length) {
             return tasks[index];
@@ -63,6 +101,10 @@ public class F_Array {
         return null;
     }
 
+    /**
+     * Adds a new task
+     * @param newTask The description of the new task
+     */
     public void addTask(String newTask) {
         String[] newTasks = new String[tasks.length + 1];
         boolean[] newCompleted = new boolean[tasks.length + 1];
@@ -76,6 +118,10 @@ public class F_Array {
         System.out.println("Task added successfully!");
     }
 
+    /**
+     * Deletes a task
+     * @param index The index of the task to delete
+     */
     public void deleteTask(int index) {
         if (index < 0 || index >= tasks.length) {
             System.out.println("Invalid index!");
