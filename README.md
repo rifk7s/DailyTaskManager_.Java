@@ -3,21 +3,11 @@
 
 ## Environment Setup
 #### IDE, Languages, and Deployment Tools
-
- [![Git Bash](https://img.shields.io/badge/Gitbash%20--f14e32?logo=git)](https://git-scm.com/downloads)
+  [![Oracle Java 23](https://img.shields.io/badge/Oracle%20Java%2023-ED8B00?style=flat&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
+  [![Git Bash](https://img.shields.io/badge/Gitbash%20--f14e32?logo=git)](https://git-scm.com/downloads)
   [![VSCode](https://img.shields.io/badge/VSCode-0086d1?style=flat&logo=internetcomputer&logoColor=white)](https://code.visualstudio.com/download) 
-  [![Oracle Java 23](https://img.shields.io/badge/Oracle%20Java%2023-ED8B00?style=flat-square&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
-## Challenge 
-> [!NOTE]  
->  Here are some challenges that I encountered during the project:
-
- **1. Out Of Memory**
-   - take a look at .vscode/settings.json, i add jvm arguments for more memory in the jvm since i got the OOM
-    ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM_ERROR.jpg?raw=true)
-    ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM.jpg?raw=true)
-
- **2. Support and Helps**
-   - Im sorry for 50% of the code are done in ChatGPT (i dont fully understand the linkedlist), I also asked a few friends for references or code example, thanks for them for showing and help me do finish the code.
+  [![GitHub](https://img.shields.io/badge/GitHub%20-ts?logo=github&logoColor=black&labelColor=white&color=54a5e3)](https://github.com)
+  
 
 ## Features
 - View predefined tasks with completion status
@@ -30,35 +20,46 @@
 - Clean console-based UI
 
 ## Data Structures Used
-1. **Array-based Task Storage**
+ **Array-based Task Storage**
    - Dynamic resizing for task addition/deletion
    - Parallel boolean array for completion tracking
 
-2. **Stack Implementation**
+ **Stack Implementation**
    - Used for undo functionality
    - Fixed-size stack with overflow/underflow protection
 
-## Technical Analysis
+## Challenge 
+ > ### [!NOTE]  
+ > ### Here are some challenges that I encountered during the project:
 
+### **Out Of Memory**
+   - take a look at ```.vscode/settings.json``` , i add jvm arguments for more memory in the jvm since i got the OOM error.
+    ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM_ERROR.jpg?raw=true)
+    ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM.jpg?raw=true)
+
+ ### **Support and Helps**
+   - Im sorry for 50% of the code are done in ChatGPT (i dont fully understand the linkedlist), I also asked a few friends for references or code example, thanks for them for showing and help me do finish the code.
+
+
+## Technical Analysis
 ### Strengths
 - O(1) access time for task operations
 - Memory-efficient boolean tracking
 - Robust input validation
 - Clean separation of concerns (F_Array, F_Stack, DailyTaskManager)
-
 ### Areas for Improvement
 - Fixed-size stack limitation (100 items)
 - No persistence between sessions
 - Linear search O(n) for undo operations
 
-## Error Handling
+### Error Handling
 - Input validation for task indices
 - Stack overflow/underflow protection
 - Null checks for task operations
 - Graceful exit handling
 
-## Getting Started
 
+## Getting Started
 1. Clone the repository
 2. Compile the Java files:
    ```bash
@@ -68,7 +69,6 @@
    ```bash
    java -cp src DailyTaskManager
    ```
-
 ## Class Structure
 
 - `DailyTaskManager`: Main application controller
