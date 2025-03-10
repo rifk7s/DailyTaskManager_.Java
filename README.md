@@ -156,6 +156,5 @@ Contributions are welcome! Please feel free to:
 - Code citations as listed in original implementation
 
 ## 📝 License
-This project is open source and available under the MIT License.
-```
+This project is open source and available under the GNU GENERAL PUBLIC License.
 
