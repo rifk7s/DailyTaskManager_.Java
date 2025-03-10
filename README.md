@@ -132,8 +132,14 @@ DailyTaskManager_.Java/
 ## 🐛 Known Issues & Solutions
 1. **Out Of Memory Error**
    - Solution: Added JVM arguments in `.vscode/settings.json`
-   - Before: ![OOM Error](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM_ERROR.jpg?raw=true)
-   - After: ![OOM Fixed](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM.jpg?raw=true)
+   
+   Before:
+   
+   ![OOM Error](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM_ERROR.jpg?raw=true)
+   
+   After:
+   
+   ![OOM Fixed](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM.jpg?raw=true)
 
 > [!NOTE]  
 > I use ChatGPT mostly for explaining the code and fixing bugs, and I have also talked to a few friends of mine for help and code references.
@@ -151,4 +157,5 @@ Contributions are welcome! Please feel free to:
 
 ## 📝 License
 This project is open source and available under the MIT License.
+```
 
