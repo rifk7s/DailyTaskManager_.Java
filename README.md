@@ -29,7 +29,7 @@
    - Fixed-size stack with overflow/underflow protection
 
 ## Challenge 
- > ### [!NOTE]  
+ > [!NOTE]  
  > Here are some challenges that I encountered during the project:
 
 ### **Out Of Memory**
