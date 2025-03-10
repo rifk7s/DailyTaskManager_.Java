@@ -32,13 +32,13 @@
  > [!NOTE]  
  > Here are some challenges that I encountered during the project:
 
-### **Out Of Memory**
-   - take a look at ```.vscode/settings.json``` , i add jvm arguments for more memory in the jvm since i got the OOM error.
+**Out Of Memory**
+- Take a look at ```.vscode/settings.json``` , i add jvm arguments for more memory in the jvm since i got the OOM.
     ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM_ERROR.jpg?raw=true)
     ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM.jpg?raw=true)
 
- ### **Support and Helps**
-   - Im sorry for 50% of the code are done in ChatGPT (i dont fully understand the linkedlist), I also asked a few friends for references or code example, thanks for them for showing and help me do finish the code.
+**Support and Helps**
+- Im sorry for 50% of the code are done in ChatGPT (i dont fully understand the linkedlist), I also asked a few friends for references or code example, thanks for them for showing and help me do finish the code.
 
 
 ## Technical Analysis
