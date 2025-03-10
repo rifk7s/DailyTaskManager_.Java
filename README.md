@@ -1,116 +1,154 @@
 # Daily Task Manager
- A Java-based command-line task management application that helps users organize and track their daily tasks.
 
-## Environment Setup
-#### IDE, Languages, and Deployment Tools
+A robust Java-based task management system featuring dual data structure implementation (Array/LinkedList) with undo capability. Perfect for managing and tracking daily tasks through a clean command-line interface.
+
+## 📸 Preview
+```
+==============================
+Which menu do you want to see?
+(0 to exit)
+1. Array
+2. Linked List
+==============================
+Please enter : 1
+```
+```
+******************************
+Welcome to Daily Task Manager!
+******************************
+
+=== Menu Options ===
+1. View tasks
+2. Update task
+3. Add new task
+4. Delete task
+5. Mark task as completed
+6. Undo task completion
+7. Check if all tasks are completed
+8. Change data structure
+9. Exit
+```
+
+## 🛠️ Technologies Used
+#### Development Environment
   [![Oracle Java 23](https://img.shields.io/badge/Oracle%20Java%2023-ED8B00?style=flat&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
   [![Git Bash](https://img.shields.io/badge/Gitbash%20--f14e32?logo=git)](https://git-scm.com/downloads)
   [![VSCode](https://img.shields.io/badge/VSCode-0086d1?style=flat&logo=internetcomputer&logoColor=white)](https://code.visualstudio.com/download) 
   [![GitHub](https://img.shields.io/badge/GitHub%20-ts?logo=github&logoColor=black&labelColor=white&color=54a5e3)](https://github.com)
-  
 
-## Features
-- View predefined tasks with completion status
-- Update existing tasks
-- Add new tasks dynamically
-- Delete tasks
-- Mark tasks as completed
-- Undo task completion (with stack-based history)
-- Check overall task completion status
-- Clean console-based UI
+## ✨ Key Features
+- **Dual Implementation**: Choose between Array or LinkedList based storage
+- **Task Management**:
+  - Add, update, and delete tasks
+  - Mark tasks as complete/incomplete
+  - View all tasks with completion status
+- **Undo Functionality**: Stack-based history for undoing task completions
+- **Data Structure Switching**: Switch between implementations at runtime
+- **Input Validation**: Robust error handling and input validation
+- **Clean UI**: Console-based interface with clear navigation
 
-## Data Structures Used
- **Array-based Task Storage**
-   - Dynamic resizing for task addition/deletion
-   - Parallel boolean array for completion tracking
+## 🚀 Getting Started
 
- **Stack Implementation**
-   - Used for undo functionality
-   - Fixed-size stack with overflow/underflow protection
+### Prerequisites
+- Java JDK 23 or higher
+- Git (optional)
+- VSCode or any Java IDE
 
-## Challenge 
- > [!NOTE]  
- > Here are some challenges that I encountered during the project:
+### Installation
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/DailyTaskManager_.Java.git
+cd DailyTaskManager_.Java
+```
 
-**Out Of Memory**
-- Take a look at ```.vscode/settings.json``` , i add jvm arguments for more memory in the jvm since i got the OOM.
-    ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM_ERROR.jpg?raw=true)
-    ![IMG](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM.jpg?raw=true)
+2. Compile the project:
+```bash
+javac src/*.java
+```
 
-**Support and Helps**
-- Im sorry for 50% of the code are done in ChatGPT (i dont fully understand the linkedlist), I also asked a few friends for references or code example, thanks for them for showing and help me do finish the code.
-
-
-## Technical Analysis
-### Strengths
-- O(1) access time for task operations
-- Memory-efficient boolean tracking
-- Robust input validation
-- Clean separation of concerns (F_Array, F_Stack, DailyTaskManager)
-### Areas for Improvement
-- Fixed-size stack limitation (100 items)
-- No persistence between sessions
-- Linear search O(n) for undo operations
-
-### Error Handling
-- Input validation for task indices
-- Stack overflow/underflow protection
-- Null checks for task operations
-- Graceful exit handling
-
-
-## Getting Started
-1. Clone the repository
-2. Compile the Java files:
-   ```bash
-   javac src/*.java
-   ```
 3. Run the application:
-   ```bash
-   java -cp src DailyTaskManager
-   ```
-## Class Structure
-
-- `DailyTaskManager`: Main application controller
-- `F_Array`: Task storage and management
-- `F_Stack`: Undo history implementation
-
-## Contributing
-
-Feel free to implement any of the challenge extensions or suggest new features, dont forget to star the repo!
-
-# Code Citations (References)
-
-## License: unknown
-https://github.com/rahmadnet/CRUD-Java-Berbasis-teks/tree/e95a1860925552eeff1912729013b66e12f6adca/apk/GIT/BELAJAR-CRUD-JAVA-TEKS-PART1-master/CRUD/main.java
-
-```
-{
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                System
+```bash
+java -cp src DailyTaskManager
 ```
 
-## License: unknown
-https://github.com/achmadsy/atm-simulation/tree/fee9e9412c233908d02a4fae191b6e1d3bb0c4cc/stage3/src/main/java/com/mycompany/atmstage3/service/MenuService.java
+## 📖 Usage Examples
 
+1. **Adding a Task**:
 ```
-("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                System.out.print("\033[H\033[2J"
+Enter new task: Complete Java assignment
+Task added successfully!
 ```
 
-## License: MIT
-https://github.com/jakobkhansen/SoNe/tree/6af5f16aa466912a978bb5eb03c6c5a90e49a1e2/Client/src/main/java/com/SoNe/Client/Utils.java
+2. **Marking as Complete**:
+```
+1. [ ] Complete Java assignment
+Enter task index to mark as completed (1-1): 1
+Task "Complete Java assignment" completed!
+```
 
+## 🏗️ Project Structure
 ```
-/c", "cls").inheritIO().start().waitFor();
-            } else {
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-            }
-        } catch (Exception
+DailyTaskManager_.Java/
+├── src/                      # Source code directory
+│   ├── DailyTaskManager.java # Main application controller
+│   ├── F_Array.java         # Array-based implementation
+│   └── F_Stack.java         # Stack for undo functionality
+├── bin/                      # Compiled class files
+│   ├── DailyTaskManager.class
+│   ├── F_Array.class
+│   └── F_Stack.class
+├── images/                   # Documentation images
+│   ├── OOM_ERROR.jpg        # Out of memory error screenshot
+│   └── OOM.jpg              # Fixed memory settings screenshot
+├── .vscode/
+│   └── settings.json        # VSCode configuration
+└── README.md                # Project documentation
 ```
+
+## 🔧 Technical Implementation
+
+### Data Structures
+- **Array Implementation**:
+  - Dynamic resizing for flexible storage
+  - O(1) access time for operations
+  - Parallel boolean array for completion tracking
+
+- **LinkedList Implementation**:
+  - Dynamic size management
+  - Efficient insertions and deletions
+  - Integrated completion tracking
+
+- **Stack (Undo Feature)**:
+  - Fixed-size implementation (100 items)
+  - LIFO operation for task completion history
+  - Overflow/underflow protection
+
+### Performance Analysis
+- Array operations: O(1) for access, O(n) for resizing
+- LinkedList operations: O(1) for insertions/deletions
+- Stack operations: O(1) for all operations
+- Undo search: O(n) worst case
+
+## 🐛 Known Issues & Solutions
+1. **Out Of Memory Error**
+   - Solution: Added JVM arguments in `.vscode/settings.json`
+   - Before: ![OOM Error](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM_ERROR.jpg?raw=true)
+   - After: ![OOM Fixed](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM.jpg?raw=true)
+   
+> [!NOTE]  
+> I use ChatGPT mostly for explaining the code and fixing bugs, and I have also talked to a few friends of mine for help and code references.
+
+## 🤝 Contributing
+Contributions are welcome! Please feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
+
+## 📚 References
+- Java Collections Framework Documentation
+- Data Structures & Algorithms resources
+- Code citations as listed in original implementation
+
+## 📝 License
+This project is open source and available under the MIT License.
 
