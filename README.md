@@ -30,7 +30,7 @@
 
 ## Challenge 
  > ### [!NOTE]  
- > ### Here are some challenges that I encountered during the project:
+ > Here are some challenges that I encountered during the project:
 
 ### **Out Of Memory**
    - take a look at ```.vscode/settings.json``` , i add jvm arguments for more memory in the jvm since i got the OOM error.
