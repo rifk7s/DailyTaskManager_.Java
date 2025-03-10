@@ -57,7 +57,7 @@ Welcome to Daily Task Manager!
 ### Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/DailyTaskManager_.Java.git
+git clone https://github.com/rifk7s/DailyTaskManager_.Java.git
 cd DailyTaskManager_.Java
 ```
 
@@ -134,7 +134,7 @@ DailyTaskManager_.Java/
    - Solution: Added JVM arguments in `.vscode/settings.json`
    - Before: ![OOM Error](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM_ERROR.jpg?raw=true)
    - After: ![OOM Fixed](https://github.com/rifk7s/DailyTaskManager_.Java/blob/main/images/OOM.jpg?raw=true)
-   
+
 > [!NOTE]  
 > I use ChatGPT mostly for explaining the code and fixing bugs, and I have also talked to a few friends of mine for help and code references.
 
